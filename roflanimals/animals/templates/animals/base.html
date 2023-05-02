@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> {{ title }} </title>
+    <style>
+    ul.hr {
+        margin: 0;
+        padding: 10px;
+    }
+    ul.hr li {
+        font-size: 15pt;
+        display: inline;
+        margin-right: 20px;
+    }
+    p.about {
+        font-size: 20pt;
+    }
+    a.about {
+        font-size: 20pt;
+    }
+  </style>
+</head>
+<body>
+<h1><a href="{% url 'home' %}"> Главная страница </a></h1>
+
+<ul class="hr">
+    {% if reg %}
+        <li>Регистрация</li>
+    {% else %}
+        <li><a href="{% url 'register' %}"> Регистрация </a></li>
+    {% endif %}
+    <li>|</li>
+    {% if log %}
+        <li>Вход</li>
+    {% else %}
+        <li><a href="{% url 'login' %}"> Вход </a></li>
+    {% endif %}
+</ul>
+
+{% block body %} {% endblock %}
+
+<p></p>
+
+<nav>
+    <ul class="hr">
+        {% for p in paginator.page_range %}
+        {% if p == page_obj.number %}
+            <li>{{p}}</li>
+        {% else %}
+            <li><a href="?page={{p}}">{{p}}</a></li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+</nav>
+
+<p></p>
+
+<a class="about" href="{% url 'about' %}"> О нас </a>
+
+<p></p>
+</body>
+</html>

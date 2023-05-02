@@ -1,0 +1,10 @@
+{% extends 'animals/base.html' %}
+
+{% block body %}
+<h1> {{ animal.name }} </h1>
+{% if animal.photo %}
+<p> <img src="{{ animal.photo.url }}" width="500"> </p>
+{% endif %}
+<p> {{ animal.content }}</p>
+<p> Страница на википедии <a href="{{ animal.wiki_link }}"> {{ animal.name }} </a> </p>
+{% endblock %}

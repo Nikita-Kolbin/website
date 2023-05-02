@@ -1,0 +1,15 @@
+{% extends 'animals/base.html' %}
+{% load animals_tags %}
+{% block body %}
+{% show_categories %}
+
+<h2><a href="{% url 'form' %}"> Добавить пост </a></h2>
+
+<h1> {{ h1 }} </h1>
+
+{% for animal in animals %}
+    <h2><a href="{{ animal.get_absolute_url }}"> {{ animal.name }} </a></h2>
+    {% if animal.photo %} <img src="{{ animal.photo.url }}" width="200"> {% endif %}
+{% endfor %}
+
+{% endblock %}
